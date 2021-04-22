@@ -1,4 +1,4 @@
-package Utils
+package br.com.serverest.Utils
 
 import io.gatling.core.Predef._
 import io.gatling.core.structure.ChainBuilder

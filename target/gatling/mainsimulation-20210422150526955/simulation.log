@@ -1,0 +1,4 @@
+RUN	br.com.serverest.simulation.MainSimulation	mainsimulation	1619103926955	 	3.5.1
+USER	Fluxo Api ServeRest	START	1619103928549
+REQUEST		Api serveRest	1619103928594	1619103928791	OK	 
+USER	Fluxo Api ServeRest	END	1619103928867

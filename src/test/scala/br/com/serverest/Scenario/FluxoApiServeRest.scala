@@ -1,12 +1,12 @@
 package br.com.serverest.Scenario
-import br.com.serverest.api.AuthApi
+import br.com.serverest.api.{AuthApi, ProdutoApi}
 import io.gatling.core.Predef._
 
 object FluxoApiServeRest {
 
-  var usuarioscsv = csv("data/usuarios.csv").circular
+  val usuarioscsv = csv("bodies/data/usuarios.csv").circular
 
-  var cenario = scenario("Fluxo Api ServeRest")
+  val cenarioObtertoken = scenario("Obter Token")
     .feed(usuarioscsv)
     .exec(AuthApi.login())
 }

@@ -2,7 +2,7 @@ package br.com.serverest.http
 
 object HeaderServeRest {
   val authorization = Map(
-    "Authorization" -> "${bearer_token}"
+    "Authorization" -> "${bearerToken}"
   )
   val content_type_json = Map(
     "Content-Type" -> "application/json"

@@ -1,12 +1,14 @@
 package br.com.serverest.simulation
 
-import br.com.serverest.Utils.{Config,Utils}
+import br.com.serverest.Scenario.FluxoApiServeRest.usuarioscsv
+import br.com.serverest.Utils.{Config, ConversorJson, ManipularArquivo, Session, Utils}
+import br.com.serverest.model.Produto
 import io.gatling.core.Predef._
 
 abstract class BaseSimulation extends Simulation {
   def scn: String = Utils.getProperty("LT_SCENARIO", "ramp")
   def userCount: Int = Utils.getProperty("LT_USERS", "1").toInt
-  def rampDuration: Int = Utils.getProperty("LT_RAMP_DURATION", "60").toInt
+  def rampDuration: Int = Utils.getProperty("LT_RAMP_DURATION", "30").toInt
   def constantDuration: Int = Utils.getProperty("LT_CONSTANT_DURATION", "10").toInt
   def maxDuration: Int = Utils.getProperty("LT_MAX_DURATION", "2").toInt
 
@@ -16,6 +18,7 @@ abstract class BaseSimulation extends Simulation {
   Config.apiServeRestUrl = Utils.getProperty("LT_API_SERVEREST_URL", Config.apiServeRestUrl)
 
   before {
+    ManipularArquivo.salvaArquivo(ConversorJson.EntidadeParaJson(Produto.criaProduto()))
     println("================================================================================")
     println("Iniciando os testes de carga, utilizando as seguintes configurações:")
     println(s"Execução")
@@ -30,5 +33,9 @@ abstract class BaseSimulation extends Simulation {
     println(s" - Cliente Secret: ${if (Config.clientSecret.isEmpty()) "" else "{suprimido}"}")
     println(s" - API URL: ${Config.apiServeRestUrl}")
     println("================================================================================")
+  }
+
+  after{
+    println("Simulação finalizada")
   }
 }

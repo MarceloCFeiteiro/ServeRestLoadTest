@@ -9,9 +9,19 @@ import java.util.List;
 
 public class ManipularArquivo {
 
-  private static String caminho = System.getProperty("user.dir").concat("/src/test/resources/bodies/data/produto.json");
+  private static String caminho = "";
 
-  public static void salvaArquivo(String obj) {
+  private String nomeArquivo;
+
+  public void setNomeArquivo(String nomeArquivo) {
+    this.nomeArquivo = nomeArquivo;
+
+  }
+
+  public static void salvaArquivo(String obj, String nomeArquivo) {
+
+    setarCaminho(nomeArquivo);
+
     try {
       FileWriter arquivo = new FileWriter(caminho);
       arquivo.write(obj);
@@ -21,6 +31,11 @@ public class ManipularArquivo {
       System.out.println("An error occurred.");
       e.printStackTrace();
     }
+  }
+
+  private static void setarCaminho(String nomeArquivo) {
+    String format = String.format("/src/test/resources/bodies/data/%s.json",nomeArquivo);
+    caminho = System.getProperty("user.dir").concat(format);
   }
 
   public static String LerArquivo(String caminhoArquivo){

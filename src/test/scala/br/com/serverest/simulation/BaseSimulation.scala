@@ -2,7 +2,7 @@ package br.com.serverest.simulation
 
 import br.com.serverest.Scenario.FluxoApiServeRest.usuarioscsv
 import br.com.serverest.Utils.{Config, ConversorJson, ManipularArquivo, Session, Utils}
-import br.com.serverest.model.Produto
+import br.com.serverest.model.{Produto, Usuario}
 import io.gatling.core.Predef._
 
 abstract class BaseSimulation extends Simulation {
@@ -18,7 +18,8 @@ abstract class BaseSimulation extends Simulation {
   Config.apiServeRestUrl = Utils.getProperty("LT_API_SERVEREST_URL", Config.apiServeRestUrl)
 
   before {
-    ManipularArquivo.salvaArquivo(ConversorJson.EntidadeParaJson(Produto.criaProduto()))
+    ManipularArquivo.salvaArquivo(ConversorJson.EntidadeParaJson(Produto.criaProduto()),"produto")
+    ManipularArquivo.salvaArquivo(ConversorJson.EntidadeParaJson(Usuario.CriaUsuario()),"usuario")
     println("================================================================================")
     println("Iniciando os testes de carga, utilizando as seguintes configurações:")
     println(s"Execução")

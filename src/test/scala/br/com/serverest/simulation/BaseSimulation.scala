@@ -2,7 +2,8 @@ package br.com.serverest.simulation
 
 import br.com.serverest.Scenario.FluxoApiServeRest.usuarioscsv
 import br.com.serverest.Utils.{Config, ConversorJson, ManipularArquivo, Session, Utils}
-import br.com.serverest.model.{Produto, Usuario}
+import br.com.serverest.http.HeaderServeRest
+import br.com.serverest.model.{Carrinho, Produto, Usuario}
 import io.gatling.core.Predef._
 
 abstract class BaseSimulation extends Simulation {
@@ -19,7 +20,8 @@ abstract class BaseSimulation extends Simulation {
 
   before {
     ManipularArquivo.salvaArquivo(ConversorJson.EntidadeParaJson(Produto.criaProduto()),"produto")
-    ManipularArquivo.salvaArquivo(ConversorJson.EntidadeParaJson(Usuario.CriaUsuario()),"usuario")
+    ManipularArquivo.salvaArquivo(ConversorJson.EntidadeParaJson(Usuario.CriaUsuarioAdministrador()),"usuario")
+   // ManipularArquivo.salvaArquivo(ConversorJson.EntidadeParaJson(Carrinho.criaCarinhoComProdutos()),"carrinho")
     println("================================================================================")
     println("Iniciando os testes de carga, utilizando as seguintes configurações:")
     println(s"Execução")
@@ -34,9 +36,11 @@ abstract class BaseSimulation extends Simulation {
     println(s" - Cliente Secret: ${if (Config.clientSecret.isEmpty()) "" else "{suprimido}"}")
     println(s" - API URL: ${Config.apiServeRestUrl}")
     println("================================================================================")
+    println(s"${HeaderServeRest.authorization}")
   }
 
   after{
+    println(HeaderServeRest.authorization)
     println("Simulação finalizada")
   }
 }

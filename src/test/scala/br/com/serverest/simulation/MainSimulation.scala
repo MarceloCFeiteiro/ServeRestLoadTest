@@ -1,7 +1,7 @@
 package br.com.serverest.simulation
 
 import br.com.serverest.http.Http
-import br.com.serverest.Scenario.{FluxoApiServeRest, FluxosProdutos}
+import br.com.serverest.Scenario.{FluxoApiServeRest, FluxoUsuarios, FluxosCarrinhos, FluxosProdutos}
 import io.gatling.core.Predef._
 
 import scala.concurrent.duration._
@@ -9,10 +9,10 @@ import scala.concurrent.duration._
 class MainSimulation extends BaseSimulation {
   val scenarios = Map(
     "ramp" -> List(
-      FluxosProdutos.cenarioCadastrarAlterarDeletar.inject(rampUsers(userCount) during (rampDuration.seconds))
+      FluxosCarrinhos.cenarioBuscaTodosCarrinhosCadastrados.inject(rampUsers(userCount) during (rampDuration.seconds))
     ),
     "constants" -> List(
-      FluxosProdutos.cenarioCadastrarAlterarDeletar.inject(constantUsersPerSec(userCount) during (constantDuration.seconds))
+      FluxosCarrinhos.cenarioBuscaTodosCarrinhosCadastrados.inject(constantUsersPerSec(userCount) during (constantDuration.seconds))
     )
   )
 

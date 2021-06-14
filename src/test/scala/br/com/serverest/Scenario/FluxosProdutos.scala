@@ -9,7 +9,7 @@ object FluxosProdutos {
   val cenarioBuscaTodosProdutosCadastrados = scenario("Busca todos os produtos cadastrados.")
     .exec(ProdutoApi.BuscarTodos())
 
-  val cenarioCadastrarAlterarDeletar = scenario("Cadastra um produto, altera o e deleta por id.")
+  val cenarioCadastrarAlterarDeletar = scenario("Cadastra um produto, altera e deleta por id.")
     .feed(usuarioscsv)
     .exec(AuthApi.login())
     .exec(ProdutoApi.Cadastrar())

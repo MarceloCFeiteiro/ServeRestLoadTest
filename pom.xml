@@ -36,6 +36,11 @@
       <artifactId>gatling-recorder</artifactId>
       <version>${gatling.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.opencsv</groupId>
+      <artifactId>opencsv</artifactId>
+      <version>4.2</version>
+    </dependency>
   </dependencies>
 
   <build>

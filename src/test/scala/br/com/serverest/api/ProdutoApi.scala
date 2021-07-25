@@ -61,7 +61,22 @@ object ProdutoApi {
     )
   }
 
-  def Delatar(): ChainBuilder = {
+  def CadastrarProdutoCarrinho(): ChainBuilder = {
+    exec(
+      http("Cadastrar Produto")
+        .post(Config.apiServeRestUrl.concat("/produtos"))
+        .headers(HeaderServeRest.authorization)
+        .headers(HeaderServeRest.content_type_json)
+        .headers(HeaderServeRest.accept)
+        .headers(HeaderServeRest.host)
+        .headers(HeaderServeRest.connection)
+        .body(ElFileBody("bodies/data/produtosParaCarrinho.json"))
+        .check(jsonPath("$._id").saveAs("idProduto"))
+        .check(status is 201)
+    )
+  }
+
+  def Deletar(): ChainBuilder = {
     exec(
       http("Deletar Produto")
         .delete(Config.apiServeRestUrl.concat("/produtos").concat("/${idProduto}"))

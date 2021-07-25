@@ -21,4 +21,30 @@ object CarrinhoApi {
     )
   }
 
+  def Cadastar(): ChainBuilder = {
+    exec(
+      http("Cadastrar carrinho")
+        .post(Config.apiServeRestUrl.concat("/carrinhos"))
+        .headers(HeaderServeRest.authorization)
+        .headers(HeaderServeRest.content_type_json)
+        .headers(HeaderServeRest.accept)
+        .headers(HeaderServeRest.host)
+        .headers(HeaderServeRest.connection)
+        .body(ElFileBody("bodies/data/carrinho.json"))
+        .check(jsonPath("$._id").saveAs("idCarrinho"))
+        .check(status is 201)
+    )
+  }
+
+  def Deletar(): ChainBuilder = {
+    exec(
+      http("Deletar carrinho")
+        .delete(Config.apiServeRestUrl.concat("/carrinhos/concluir-compra"))
+        .headers(HeaderServeRest.authorization)
+        .headers(HeaderServeRest.accept)
+        .headers(HeaderServeRest.host)
+        .headers(HeaderServeRest.connection)
+        .check(status is 200)
+    )
+  }
 }

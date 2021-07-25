@@ -9,7 +9,7 @@ object AuthApi {
 
   def login() = {
     exec(
-      http("Api serveRest")
+      http("Api serveRest autenticacao")
         .post(Config.authServeRestUrl.concat("/login"))
         .body(ElFileBody("bodies/login/loginApiServeRest.json"))
         .headers(HeaderServeRest.content_type_json)

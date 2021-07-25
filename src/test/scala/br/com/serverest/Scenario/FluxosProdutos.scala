@@ -1,7 +1,7 @@
 package br.com.serverest.Scenario
 
-import br.com.serverest.Scenario.FluxoApiServeRest.usuarioscsv
-import br.com.serverest.api.{AuthApi, ProdutoApi}
+import br.com.serverest.Scenario.FluxoApiServeRest.{ usuarioscsv}
+import br.com.serverest.api.{AuthApi, ProdutoApi, UsuarioApi}
 import io.gatling.core.Predef.scenario
 
 object FluxosProdutos {
@@ -14,7 +14,7 @@ object FluxosProdutos {
     .exec(AuthApi.login())
     .exec(ProdutoApi.Cadastrar())
     .exec(ProdutoApi.Alterar())
-    .exec(ProdutoApi.Delatar())
+    .exec(ProdutoApi.Deletar())
 
   val cenarioCadastrarBuscaPorId = scenario("Cadastra um produto e busca por id.")
     .feed(usuarioscsv)
@@ -26,5 +26,6 @@ object FluxosProdutos {
     .feed(usuarioscsv)
     .exec(AuthApi.login())
     .exec(ProdutoApi.Cadastrar())
-    .exec(ProdutoApi.Delatar())
+    .exec(ProdutoApi.Deletar())
+
 }

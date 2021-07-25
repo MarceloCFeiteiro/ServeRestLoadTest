@@ -1,0 +1,6 @@
+{
+  "nome": "${nome}",
+  "preco": "${preco}",
+  "quantidade": "${quantidade}",
+  "descricao": "${descricao}"
+}

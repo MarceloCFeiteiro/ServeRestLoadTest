@@ -13,7 +13,6 @@ object UsuarioApi {
     exec(
       http("Atera um usuário.")
         .put(Config.apiServeRestUrl.concat("/usuarios").concat("/${idUsuario}"))
-        .headers(HeaderServeRest.authorization)
         .headers(HeaderServeRest.content_type_json)
         .headers(HeaderServeRest.accept)
         .headers(HeaderServeRest.host)
@@ -61,11 +60,10 @@ object UsuarioApi {
     )
   }
 
-  def Delatar(): ChainBuilder = {
+  def Deletar(): ChainBuilder = {
     exec(
       http("Deletar usuario")
         .delete(Config.apiServeRestUrl.concat("/usuarios").concat("/${idUsuario}"))
-        .headers(HeaderServeRest.authorization)
         .headers(HeaderServeRest.accept)
         .headers(HeaderServeRest.host)
         .headers(HeaderServeRest.connection)

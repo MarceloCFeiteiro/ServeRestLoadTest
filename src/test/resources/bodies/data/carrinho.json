@@ -1,1 +1,8 @@
-{"produtos":[{"nome":"c191c9a0-8d9c-42d3-ab60-c811173dd9c1","preco":3184,"descricao":"ecd9cbfc-1c5b-405d-96af-4be964a6038e","quantidade":5},{"nome":"58340634-0bb6-4693-860c-eaffb4a8f1a8","preco":3280,"descricao":"ba78cbab-0b8b-44c4-be15-46f81cdf2024","quantidade":5}]}
+{
+  "produtos": [
+    {
+      "idProduto": "${idProduto}",
+      "quantidade": "${quantidade}"
+    }
+  ]
+}

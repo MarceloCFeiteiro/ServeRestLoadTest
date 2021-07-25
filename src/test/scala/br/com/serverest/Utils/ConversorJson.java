@@ -2,6 +2,8 @@ package br.com.serverest.Utils;
 
 import com.google.gson.Gson;
 
+import java.lang.reflect.Type;
+
 
 public  class ConversorJson {
 
@@ -12,5 +14,4 @@ public  class ConversorJson {
    return new Gson().toJson(obj);
 
   }
-
 }
